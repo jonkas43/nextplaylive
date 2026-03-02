@@ -487,3 +487,43 @@ html, body {
   border: 1px solid rgba(53,255,154,.14);
   box-shadow: 0 0 0 1px rgba(80,160,255,.06), 0 16px 40px rgba(0,0,0,.45);
 }
+
+/* --- Premium glow + glass polish --- */
+.heroCard{
+  position: relative;
+  background: rgba(10,14,22,.45);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(80,255,170,.18);
+  box-shadow:
+    0 0 0 1px rgba(80,180,255,.08),
+    0 18px 60px rgba(0,0,0,.55);
+  overflow: hidden;
+}
+
+.heroCard::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background:
+    radial-gradient(700px 260px at 35% 10%, rgba(80,255,170,.20), transparent 60%),
+    radial-gradient(520px 220px at 80% 0%, rgba(80,180,255,.14), transparent 55%),
+    linear-gradient(90deg, rgba(80,255,170,.14), transparent 40%, rgba(80,180,255,.10));
+  filter: blur(10px);
+  opacity: .9;
+  pointer-events:none;
+}
+
+.heroCard::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image: radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px);
+  background-size: 22px 22px;
+  opacity:.10;
+  pointer-events:none;
+}
+
+.card{
+  background: rgba(10,14,22,.35);
+  backdrop-filter: blur(10px);
+}
