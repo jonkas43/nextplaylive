@@ -179,3 +179,18 @@ body::before{
   .nav{ gap:10px; }
   .nav a{ padding:7px 8px; }
 }
+header {
+  background: linear-gradient(180deg, #0b0f14 0%, #0a0d12 100%);
+  border-bottom: 1px solid rgba(0, 255, 120, 0.18);
+}
+
+header img {
+  display: block;
+  filter: drop-shadow(0 0 10px rgba(0,255,120,.25));
+}
+
+.logo{
+  height: 42px;
+  width: auto;
+  display: block;
+}
