@@ -156,3 +156,21 @@ export default function HomePage() {
               </div>
               <div className="eventIcon">🟨</div>
             </div>
+
+            <div className="event">
+              <div className="eventLeft">
+                <div className="eventTag">Gol 44’</div>
+                <div className="eventName">Berterame</div>
+              </div>
+              <div className="eventIcon">⚽</div>
+            </div>
+
+            <a className="linkMore" href="#">
+              Ver todas →
+            </a>
+          </div>
+        </aside>
+      </section>
+    </div>
+  );
+}
