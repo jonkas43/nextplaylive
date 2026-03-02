@@ -113,7 +113,7 @@ html, body {
   display: inline-block;
   padding: 6px 14px;
   background: rgba(0,255,140,0.15);
-  border: 1px solid color: var(--brand-green);;
+  border: 1px solid var(--brand-green);
   border-radius: 20px;
   color: color: var(--brand-green);
   font-weight: 600;
