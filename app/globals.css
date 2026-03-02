@@ -87,3 +87,82 @@ html, body {
   height: 38px;
   width: auto;
 }
+
+.page {
+  padding: 40px 0;
+}
+
+.heroCard {
+  background: rgba(15,25,40,0.7);
+  border: 1px solid rgba(0,255,140,0.2);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 0 40px rgba(0,255,140,0.15);
+  margin-bottom: 30px;
+}
+
+.chipLive {
+  display: inline-block;
+  padding: 6px 14px;
+  background: rgba(0,255,140,0.15);
+  border: 1px solid #35ff9a;
+  border-radius: 20px;
+  color: #35ff9a;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.scoreRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 30px 0;
+}
+
+.team {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.teamRight {
+  text-align: right;
+}
+
+.badge {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg,#35ff9a,#14d27f);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #000;
+}
+
+.score {
+  font-size: 56px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.tab {
+  padding: 8px 16px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  cursor: pointer;
+}
+
+.tabActive {
+  background: linear-gradient(90deg,#35ff9a,#14d27f);
+  color: #000;
+  font-weight: 600;
+}
