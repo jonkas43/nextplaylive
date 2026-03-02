@@ -1,14 +1,22 @@
 :root{
+
+/* Brand green (del logo) */
+  --brand-green: #39FF14;
+  --brand-green-glow: rgba(57,255,20,.60);
+  --brand-green-soft: rgba(57,255,20,.15);
+
+  /* Mapea el sistema existente al verde del logo */
+  --green: var(--brand-green);
+  --green2: var(--brand-green);
+  --stroke2: rgba(57,255,20,.18);
   --bg0:#05070c;
   --bg1:#070b12;
   --panel: rgba(12,18,28,.62);
   --panel2: rgba(10,15,24,.45);
   --stroke: rgba(255,255,255,.08);
-  --stroke2: rgba(0,255,140,.18);
+
   --text:#e7eef8;
   --muted:#9fb0c4;
-  --green:#35ff9a;
-  --green2:#14d27f;
   --shadow: 0 18px 50px rgba(0,0,0,.55);
   --radius: 18px;
 }
