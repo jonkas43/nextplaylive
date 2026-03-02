@@ -10,7 +10,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body style={{ fontFamily: "Arial, sans-serif", background: "#0b0f14", color: "white" }}>
+      <body>
         <header style={{ padding: "18px 24px", borderBottom: "1px solid #1f2937", background: "#0b0f14" }}>
   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", maxWidth: 1200, margin: "0 auto" }}>
     <a href="/">
@@ -26,7 +26,7 @@ export default function RootLayout({
   </div>
 </header>
 
-        <main style={{ padding: 24 }}>{children}</main>
+        <main className="container">{children}</main>
       </body>
     </html>
   );
