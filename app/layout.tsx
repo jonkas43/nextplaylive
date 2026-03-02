@@ -17,7 +17,7 @@ export default function RootLayout({
           <div className="topbarInner">
             <div className="brand">
               <a href="/">
-                <img className="brandLogo" src="/logo.svg" alt="Next Play Live" />
+                <img src="/logo.png" alt="Next Play Live" style={{ height: 42 }} />
               </a>
             </div>
 
