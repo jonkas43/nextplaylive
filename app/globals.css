@@ -471,3 +471,19 @@ html, body {
   .team{ min-width: 0; }
   .score{ font-size: 36px; }
 }
+
+.page{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px 24px 60px;
+}
+
+.heroCard{
+  border: 1px solid rgba(53,255,154,.18);
+  box-shadow: 0 0 0 1px rgba(80,160,255,.08), 0 18px 50px rgba(0,0,0,.55);
+}
+
+.card{
+  border: 1px solid rgba(53,255,154,.14);
+  box-shadow: 0 0 0 1px rgba(80,160,255,.06), 0 16px 40px rgba(0,0,0,.45);
+}
