@@ -475,3 +475,59 @@ a{ color:inherit; text-decoration:none; }
   .nav{ gap:10px; }
   .nav a{ padding:7px 8px; }
 }
+
+/* =========================
+   MOBILE PRO FIX
+   ========================= */
+
+@media (max-width: 720px){
+
+  /* HERO más compacto */
+  .heroCard{
+    padding: 20px 16px !important;
+    border-radius: 18px !important;
+  }
+
+  /* Score en línea horizontal */
+  .scoreRow{
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 10px !important;
+  }
+
+  .team{
+    min-width: 0 !important;
+    gap: 8px !important;
+  }
+
+  .teamRight{
+    text-align: right !important;
+  }
+
+  /* Score más limpio */
+  .score{
+    font-size: 40px !important;
+    line-height: 1 !important;
+  }
+
+  /* Tabs estilo app */
+  .tabs{
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    margin-top: 12px !important;
+  }
+
+  .tab{
+    flex: 1 1 auto !important;
+    text-align: center !important;
+    font-size: 13px !important;
+    padding: 8px 10px !important;
+  }
+
+  /* Reduce glow excesivo */
+  .heroCard::before{
+    opacity: .5 !important;
+  }
+
+}
