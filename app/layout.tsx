@@ -1,3 +1,4 @@
+import "./globals.css";
 export const metadata = {
   title: "Next Play Live",
   description: "Scores en vivo",
