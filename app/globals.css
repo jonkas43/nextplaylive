@@ -531,3 +531,154 @@ a{ color:inherit; text-decoration:none; }
   }
 
 }
+
+/* =========================
+   MOBILE SCORE FIX REAL
+   ========================= */
+
+@media (max-width: 720px){
+
+  /* Apilar correctamente */
+  .scoreRow{
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 16px !important;
+  }
+
+  /* Fila interna para equipos */
+  .scoreRow .team{
+    width: 100%;
+    justify-content: space-between !important;
+  }
+
+  /* Score centrado y sin invadir */
+  .score{
+    font-size: 42px !important;
+    margin: 6px 0 !important;
+  }
+
+  /* Evita que los nombres empujen */
+  .teamName{
+    font-size: 16px !important;
+  }
+
+/* =========================
+   MOBILE SCORE FIX REAL
+   ========================= */
+
+@media (max-width: 720px){
+
+  /* Apilar correctamente */
+  .scoreRow{
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 16px !important;
+  }
+
+  /* Fila interna para equipos */
+  .scoreRow .team{
+    width: 100%;
+    justify-content: space-between !important;
+  }
+
+  /* Score centrado y sin invadir */
+  .score{
+    font-size: 42px !important;
+    margin: 6px 0 !important;
+  }
+
+  /* Evita que los nombres empujen */
+  .teamName{
+    font-size: 16px !important;
+  }
+
+/* =========================
+   MOBILE SCORE FIX REAL
+   ========================= */
+
+@media (max-width: 720px){
+
+  /* Apilar correctamente */
+  .scoreRow{
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 16px !important;
+  }
+
+  /* Fila interna para equipos */
+  .scoreRow .team{
+    width: 100%;
+    justify-content: space-between !important;
+  }
+
+  /* Score centrado y sin invadir */
+  .score{
+    font-size: 42px !important;
+    margin: 6px 0 !important;
+  }
+
+  /* Evita que los nombres empujen */
+  .teamName{
+    font-size: 16px !important;
+  }
+
+/* =========================
+   MOBILE SCORE FIX REAL
+   ========================= */
+
+@media (max-width: 720px){
+
+  /* Apilar correctamente */
+  .scoreRow{
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 16px !important;
+  }
+
+  /* Fila interna para equipos */
+  .scoreRow .team{
+    width: 100%;
+    justify-content: space-between !important;
+  }
+
+  /* Score centrado y sin invadir */
+  .score{
+    font-size: 42px !important;
+    margin: 6px 0 !important;
+  }
+
+  /* Evita que los nombres empujen */
+  .teamName{
+    font-size: 16px !important;
+  }
+
+/* =========================
+   MOBILE SCORE FIX REAL
+   ========================= */
+
+@media (max-width: 720px){
+
+  /* Apilar correctamente */
+  .scoreRow{
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 16px !important;
+  }
+
+  /* Fila interna para equipos */
+  .scoreRow .team{
+    width: 100%;
+    justify-content: space-between !important;
+  }
+
+  /* Score centrado y sin invadir */
+  .score{
+    font-size: 42px !important;
+    margin: 6px 0 !important;
+  }
+
+  /* Evita que los nombres empujen */
+  .teamName{
+    font-size: 16px !important;
+  }
+
