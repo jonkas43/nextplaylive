@@ -17,7 +17,7 @@ export default function RootLayout({
           <div className="topbarInner">
             <div className="brand">
               <a href="/">
-                <img src="/logo.png" alt="Next Play Live" />
+                <img className="brandLogo" src="/logo.svg" alt="Next Play Live" />
               </a>
             </div>
 
