@@ -7,8 +7,8 @@
   --stroke2: rgba(0,255,140,.18);
   --text:#e7eef8;
   --muted:#9fb0c4;
-  --green:#35ff9a;
-  --green2:#14d27f;
+  --green: var(--brand-green);
+  --green2: var(--brand-green);
   --shadow: 0 18px 50px rgba(0,0,0,.55);
   --radius: 18px;
 }
