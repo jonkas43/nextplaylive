@@ -39,162 +39,120 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* GRID: MAIN + SIDEBAR */}
-      <div className="grid">
-        <main className="mainCol">
-          {/* ESTADÍSTICAS */}
-          <section className="panel">
-            <div className="panelTitle">Estadísticas</div>
+      {/* BODY GRID */}
+      <section className="grid">
+        {/* LEFT */}
+        <div className="stack">
+          <div className="sectionTitle">Estadísticas</div>
 
-            <div className="stat">
-              <div className="statTop">
-                <span>Posesión</span>
-                <span className="statNums">54% · 46%</span>
+          <div className="statsGrid">
+            <div className="statCard">
+              <div className="statLabelRow">
+                <div className="statLabel">Posesión</div>
+                <div className="statNums">
+                  <span>54%</span>
+                  <span className="muted"> · </span>
+                  <span>46%</span>
+                </div>
               </div>
               <div className="bar">
                 <div className="barFill" style={{ width: "54%" }} />
               </div>
             </div>
 
-            <div className="statGrid">
-              <div className="miniStat">
-                <div className="miniLabel">Tiros (Total)</div>
-                <div className="miniNums">11 · 7</div>
-                <div className="bar sm">
-                  <div className="barFill" style={{ width: "61%" }} />
+            <div className="statCard">
+              <div className="statLabelRow">
+                <div className="statLabel">Tiros (Total)</div>
+                <div className="statNums">
+                  <span>11</span>
+                  <span className="muted"> · </span>
+                  <span>7</span>
                 </div>
               </div>
+              <div className="bar">
+                <div className="barFill" style={{ width: "61%" }} />
+              </div>
+            </div>
 
-              <div className="miniStat">
-                <div className="miniLabel">Tiros a puerta</div>
-                <div className="miniNums">5 · 2</div>
-                <div className="bar sm">
-                  <div className="barFill" style={{ width: "71%" }} />
+            <div className="statCard">
+              <div className="statLabelRow">
+                <div className="statLabel">Tiros a puerta</div>
+                <div className="statNums">
+                  <span>5</span>
+                  <span className="muted"> · </span>
+                  <span>2</span>
                 </div>
               </div>
+              <div className="bar">
+                <div className="barFill" style={{ width: "71%" }} />
+              </div>
+            </div>
 
-              <div className="miniStat">
-                <div className="miniLabel">Corners</div>
-                <div className="miniNums">6 · 3</div>
-                <div className="bar sm">
-                  <div className="barFill" style={{ width: "67%" }} />
+            <div className="statCard">
+              <div className="statLabelRow">
+                <div className="statLabel">Corners</div>
+                <div className="statNums">
+                  <span>6</span>
+                  <span className="muted"> · </span>
+                  <span>3</span>
                 </div>
               </div>
+              <div className="bar">
+                <div className="barFill" style={{ width: "67%" }} />
+              </div>
+            </div>
 
-              <div className="miniStat">
-                <div className="miniLabel">Faltas</div>
-                <div className="miniNums">12 · 9</div>
-                <div className="bar sm">
-                  <div className="barFill" style={{ width: "57%" }} />
+            <div className="statCard">
+              <div className="statLabelRow">
+                <div className="statLabel">Faltas</div>
+                <div className="statNums">
+                  <span>12</span>
+                  <span className="muted"> · </span>
+                  <span>9</span>
                 </div>
               </div>
-            </div>
-          </section>
-
-          {/* PARTIDOS EN VIVO (lista horizontal tipo maqueta) */}
-          <section className="panel">
-            <div className="panelTitle">En vivo ahora</div>
-
-            <div className="liveRow">
-              <div className="liveItem">
-                <div className="liveBadge">LIVE</div>
-                <div className="liveTeams">Barcelona vs PSG</div>
-                <div className="liveSmall">Champions League</div>
-              </div>
-
-              <div className="liveItem">
-                <div className="liveBadge">LIVE</div>
-                <div className="liveTeams">Knicks vs Pacers</div>
-                <div className="liveSmall">NBA Playoffs</div>
+              <div className="bar">
+                <div className="barFill" style={{ width: "57%" }} />
               </div>
             </div>
-          </section>
+          </div>
+        </div>
 
-          {/* PLAYER */}
-          <section className="player">
-            <div className="playerLeft">
-              <div className="dot" />
-              <div>
-                <div className="playerTitle">Club América vs Monterrey</div>
-                <div className="playerSub">Humano</div>
-              </div>
+        {/* RIGHT */}
+        <aside className="rail">
+          <div className="card">
+            <div className="cardTitleRow">
+              <div className="cardTitle">Audio</div>
+              <div className="liveDot">LIVE</div>
             </div>
 
-            <div className="playerRight">
-              <span className="playerTime">0:35</span>
-              <button className="playerBtn">▶</button>
+            <div className="pillRow">
+              <button className="pill pillActive">Humano</button>
+              <button className="pill">IA</button>
             </div>
 
-            <div className="seek">
-              <div className="seekFill" />
-            </div>
-          </section>
-        </main>
-
-        <aside className="sideCol">
-          {/* AUDIO */}
-          <section className="panel">
-            <div className="panelTitleRow">
-              <span>Audio</span>
-              <span className="pillLive">● LIVE</span>
-            </div>
-
-            <div className="toggle">
-              <button className="toggleBtn toggleActive">Humano</button>
-              <button className="toggleBtn">IA</button>
-            </div>
-
-            <div className="audioLine">
-              <div className="headphone">🎧</div>
-              <div>
-                <div className="audioName">Radio Next Play</div>
-                <div className="audioSub">Narrador real</div>
-              </div>
-            </div>
+            <div className="cardSub">Radio Next Play · Narrador real</div>
 
             <button className="cta">▶ Escuchar ahora</button>
-          </section>
+          </div>
 
-          {/* EVENTOS */}
-          <section className="panel">
-            <div className="panelTitleRow">
-              <span>Eventos en vivo</span>
-              <span className="dots">⋯</span>
+          <div className="card">
+            <div className="cardTitleRow">
+              <div className="cardTitle">Eventos en vivo</div>
             </div>
 
-            <div className="events">
-              <div className="event">
-                <div className="eventIcon">⚽</div>
-                <div>
-                  <div className="eventTop">Gol 62’</div>
-                  <div className="eventSub">Henry Martín</div>
-                </div>
-                <div className="eventTag">CA</div>
+            <div className="event">
+              <div className="eventLeft">
+                <div className="eventTag">Gol 62’</div>
+                <div className="eventName">Henry Martin</div>
               </div>
-
-              <div className="event">
-                <div className="eventIcon">🟨</div>
-                <div>
-                  <div className="eventTop">Amarilla 58’</div>
-                  <div className="eventSub">Eduardo Aguirre</div>
-                </div>
-                <div className="eventTag">MTY</div>
-              </div>
-
-              <div className="event">
-                <div className="eventIcon">⚽</div>
-                <div>
-                  <div className="eventTop">Gol 44’</div>
-                  <div className="eventSub">Berterame</div>
-                </div>
-                <div className="eventTag">MTY</div>
-              </div>
+              <div className="eventIcon">⚽</div>
             </div>
 
-            <a className="more" href="/live">Ver todas →</a>
-          </section>
-        </aside>
-      </div>
-    </div>
-  );
-}
+            <div className="event">
+              <div className="eventLeft">
+                <div className="eventTag">Amarilla 58’</div>
+                <div className="eventName">Eduardo Aguirre</div>
+              </div>
+              <div className="eventIcon">🟨</div>
+            </div>
