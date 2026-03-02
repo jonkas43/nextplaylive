@@ -113,9 +113,9 @@ html, body {
   display: inline-block;
   padding: 6px 14px;
   background: rgba(0,255,140,0.15);
-  border: 1px solid #35ff9a;
+  border: 1px solid color: var(--brand-green);;
   border-radius: 20px;
-  color: #35ff9a;
+  color: color: var(--brand-green);
   font-weight: 600;
   margin-bottom: 10px;
 }
@@ -140,7 +140,7 @@ html, body {
 .badge {
   width: 50px;
   height: 50px;
-  background: linear-gradient(135deg,#35ff9a,#14d27f);
+  background: linear-gradient(135deg,var(--brand-green),var(--brand-green));
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -170,7 +170,7 @@ html, body {
 }
 
 .tabActive {
-  background: linear-gradient(90deg,#35ff9a,#14d27f);
+  background: linear-gradient(90deg,#39FF14,#39FF14);
   color: #000;
   font-weight: 600;
 }
