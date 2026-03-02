@@ -10,15 +10,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body style={{ fontFamily: "Arial, sans-serif" }}>
-        <header style={{ padding: 16, borderBottom: "1px solid #ddd" }}>
-          <nav style={{ display: "flex", gap: 12 }}>
-            <a href="/">Home</a>
-            <a href="/live">En vivo</a>
-            <a href="/leagues">Ligas</a>
-            <a href="/login">Login</a>
-          </nav>
-        </header>
+      <body style={{ fontFamily: "Arial, sans-serif", background: "#0b0f14", color: "white" }}>
+        <header style={{ padding: "18px 24px", borderBottom: "1px solid #1f2937", background: "#0b0f14" }}>
+  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", maxWidth: 1200, margin: "0 auto" }}>
+    <a href="/">
+      <img src="/logo.png" alt="Next Play Live" style={{ height: 42 }} />
+    </a>
+
+    <nav style={{ display: "flex", gap: 22 }}>
+      <a href="/" style={{ textDecoration: "none", color: "#9ca3af", fontSize: 14, letterSpacing: 1 }}>Home</a>
+      <a href="/live" style={{ textDecoration: "none", color: "#9ca3af", fontSize: 14, letterSpacing: 1 }}>En vivo</a>
+      <a href="/leagues" style={{ textDecoration: "none", color: "#9ca3af", fontSize: 14, letterSpacing: 1 }}>Ligas</a>
+      <a href="/login" style={{ textDecoration: "none", color: "#9ca3af", fontSize: 14, letterSpacing: 1 }}>Login</a>
+    </nav>
+  </div>
+</header>
 
         <main style={{ padding: 24 }}>{children}</main>
       </body>
