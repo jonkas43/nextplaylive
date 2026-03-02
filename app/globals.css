@@ -82,3 +82,8 @@ header img{
 html, body {
   background: #05070c !important;
 }
+
+.logo{
+  height: 38px;
+  width: auto;
+}
