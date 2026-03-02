@@ -527,3 +527,20 @@ html, body {
   background: rgba(10,14,22,.35);
   backdrop-filter: blur(10px);
 }
+
+.score {
+  font-size: 64px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  background: linear-gradient(90deg, #50ff9a, #50b4ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow:
+    0 0 20px rgba(80,255,154,.35),
+    0 0 40px rgba(80,180,255,.25);
+}
+
+.heroCard {
+  padding: 36px 40px;
+  border-radius: 20px;
+}
