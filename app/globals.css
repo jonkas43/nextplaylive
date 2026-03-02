@@ -4,7 +4,7 @@
   --panel: rgba(12,18,28,.62);
   --panel2: rgba(10,15,24,.45);
   --stroke: rgba(255,255,255,.08);
-  --stroke2: rgba(0,255,140,.18);
+  --stroke2: rgba(57,255,20,.18);
   --text:#e7eef8;
   --muted:#9fb0c4;
   --green: var(--brand-green);
@@ -28,7 +28,7 @@ html,body{
 /* “glow/noise” suave gaming */
 body{
   background:
-    radial-gradient(900px 500px at 22% 18%, rgba(53,255,154,.12), transparent 60%),
+    radial-gradient(900px 500px at 22% 18%, rgba(57,255,20,.12), transparent 60%),
     radial-gradient(800px 420px at 78% 26%, rgba(80,160,255,.10), transparent 60%),
     radial-gradient(900px 700px at 50% 110%, rgba(0,0,0,.55), transparent 55%),
     linear-gradient(180deg, var(--bg1) 0%, var(--bg0) 100%) !important;
