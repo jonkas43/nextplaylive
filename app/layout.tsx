@@ -1,9 +1,23 @@
 import "./globals.css";
-import Link from "next/link";
+import type { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Next Play Live",
   description: "Scores en vivo",
+
+  manifest: "/manifest.webmanifest",
+
+  themeColor: "#05070c",
+
+  icons: {
+    icon: [
+      { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icons/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -13,53 +27,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body>
-        <header className="topbar">
-          <div className="topbarInner">
-            <img className="logo" src="/logo.png" alt="Next Play Live" />
-
-            {/* Toggle */}
-            <input id="menuToggle" className="menuToggle" type="checkbox" />
-            <label htmlFor="menuToggle" className="hamburger" aria-label="Abrir menú">
-              <span />
-              <span />
-              <span />
-            </label>
-
-            {/* Nav desktop */}
-            <nav className="nav navDesktop">
-              <Link href="/">Home</Link>
-              <Link href="/live">En vivo</Link>
-              <Link href="/leagues">Ligas</Link>
-              <Link href="/login">Login</Link>
-            </nav>
-
-            {/* Drawer mobile */}
-            <div className="mobileMenu">
-              <nav className="navMobile">
-                <Link href="/">Home</Link>
-                <Link href="/live">En vivo</Link>
-                <Link href="/leagues">Ligas</Link>
-                <Link href="/login">Login</Link>
-              </nav>
-            </div>
-
-            {/* Overlay */}
-            <label htmlFor="menuToggle" className="menuOverlay" aria-label="Cerrar menú" />
-          </div>
-        </header>
-
-        {/* Contenido (deja espacio para tabbar) */}
-        <main className="appMain">{children}</main>
-
-        {/* Tab bar fijo */}
-        <nav className="tabbar">
-          <Link className="tabItem" href="/">Resumen</Link>
-          <Link className="tabItem" href="/live">En vivo</Link>
-          <Link className="tabItem" href="/leagues">Ligas</Link>
-          <Link className="tabItem" href="/login">Perfil</Link>
-        </nav>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
