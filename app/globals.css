@@ -651,3 +651,6 @@ body{
     radial-gradient(1200px 900px at 50% 120%, rgba(0,0,0,.85), transparent 60%),
     linear-gradient(180deg, #070b12 0%, #05070c 100%) !important;
 }
+
+/* TEST: si esto NO se ve, tu deploy/caché no se actualiza */
+body{ outline: 12px solid magenta !important; }
