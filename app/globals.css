@@ -5,20 +5,28 @@
 
 :root{
   --brand-green: #39FF14;
+  --brand-green-glow: rgba(57,255,20,.60);
+  --brand-green-soft: rgba(57,255,20,.15);
   --brand-green-line: rgba(57,255,20,.22);
 
   --bg0:#05070c;
   --bg1:#070b12;
+
+  --panel: rgba(12,18,28,.62);
+  --panel2: rgba(10,15,24,.45);
+
+  --stroke: rgba(255,255,255,.08);
+  --stroke2: rgba(57,255,20,.18);
 
   --text:#e7eef8;
   --muted:#9fb0c4;
 
   --shadow: 0 18px 50px rgba(0,0,0,.55);
 
-  /* CONTROL DE ANCHO (DESKTOP) */
-  --max: 1400px;      /* <- ancho “pro” (no angosto, no exagerado) */
-  --pad: 24px;        /* padding lateral desktop */
-  --pad-m: 12px;      /* padding lateral mobile */
+  /* Layout control */
+  --max: 1480px;     /* ancho máximo en desktop */
+  --pad: 28px;       /* padding lateral */
+  --topbar-h: 78px;  /* aproximado para separar contenido */
 }
 
 *{ box-sizing:border-box; }
@@ -34,6 +42,8 @@ html,body{
 
 html{ background: var(--bg0); }
 
+a{ color:inherit; text-decoration:none; }
+
 /* =========================
    FONDO ESTADIO (UNA SOLA VEZ)
    Usa: /public/stadium-bg.png
@@ -41,7 +51,7 @@ html{ background: var(--bg0); }
 body{
   position: relative;
   isolation: isolate;
-  background: transparent; /* no pisar el fondo */
+  background: transparent;
 }
 
 body::before{
@@ -53,14 +63,11 @@ body::before{
 
   background:
     url("/stadium-bg.png") center top / cover no-repeat,
-
     radial-gradient(1200px 600px at 90% 8%, rgba(255,255,255,.18), transparent 60%),
     radial-gradient(1200px 600px at 10% 8%, rgba(255,255,255,.15), transparent 60%),
     radial-gradient(900px 520px at 50% 25%, rgba(57,255,20,.12), transparent 70%),
-
     radial-gradient(1200px 900px at 50% 120%, rgba(0,0,0,.85), transparent 60%),
     radial-gradient(1200px 900px at 50% -10%, rgba(0,0,0,.55), transparent 60%),
-
     linear-gradient(180deg, #070b12 0%, #05070c 100%);
 
   background-blend-mode: normal, screen, screen, screen, multiply, multiply, normal;
@@ -83,13 +90,11 @@ body::after{
   mix-blend-mode: overlay;
 }
 
-a{ color:inherit; text-decoration:none; }
-
 /* =========================
    HEADER + NAV
    ========================= */
 .topbar{
-  padding: 18px var(--pad);
+  padding:18px 24px;
   background: linear-gradient(180deg, rgba(11,15,20,.92) 0%, rgba(10,13,18,.82) 100%);
   border-bottom:1px solid var(--brand-green-line);
   position: sticky;
@@ -103,8 +108,8 @@ a{ color:inherit; text-decoration:none; }
   display:flex;
   align-items:center;
   justify-content:space-between;
-  max-width: var(--max);
-  margin:0 auto;
+  width: min(100% - (var(--pad) * 2), var(--max));
+  margin: 0 auto;
   gap:18px;
 }
 
@@ -134,7 +139,7 @@ a{ color:inherit; text-decoration:none; }
   text-shadow: 0 0 12px rgba(57,255,20,.35);
 }
 
-/* --- Hamburger --- */
+/* --- Hamburger (checkbox hack) --- */
 .menuToggle{
   position:absolute;
   width:1px;
@@ -144,7 +149,7 @@ a{ color:inherit; text-decoration:none; }
 }
 
 .hamburger{
-  display:none; /* solo mobile */
+  display:none;
   width:44px;
   height:44px;
   border-radius:12px;
@@ -165,9 +170,7 @@ a{ color:inherit; text-decoration:none; }
   height:2px;
   background: var(--brand-green);
   border-radius: 2px;
-  box-shadow:
-    0 -7px 0 var(--brand-green),
-    0  7px 0 var(--brand-green);
+  box-shadow: 0 -7px 0 var(--brand-green), 0 7px 0 var(--brand-green);
   filter: drop-shadow(0 0 6px rgba(57,255,20,.35));
 }
 
@@ -181,26 +184,19 @@ a{ color:inherit; text-decoration:none; }
 }
 
 /* =========================
-   PAGE (ESTO TE FALTABA)
+   PAGE (ARREGLO: ancho desktop + separación del header)
    ========================= */
 .page{
-  max-width: var(--max);
+  width: min(100% - (var(--pad) * 2), var(--max));
   margin: 0 auto;
-  padding: 26px var(--pad) 60px;
+  padding: 22px 0 60px;
   display:flex;
   flex-direction:column;
   gap:18px;
-
-  /* evita que “se pegue” visualmente al header */
-  padding-top: 22px;
 }
 
-/* Si todavía usas .container en páginas */
-.container{
-  max-width: var(--max);
-  margin:0 auto;
-  padding: 24px var(--pad);
-}
+/* Si alguna sección se “pega” al sticky header al navegar */
+.page > *{ scroll-margin-top: calc(var(--topbar-h) + 12px); }
 
 /* =========================
    HERO
@@ -322,7 +318,6 @@ a{ color:inherit; text-decoration:none; }
   white-space: nowrap;
 }
 
-/* Tabs */
 .tabs{
   display:flex;
   gap:10px;
@@ -348,11 +343,11 @@ a{ color:inherit; text-decoration:none; }
 }
 
 /* =========================
-   GRID (stats + rail) - UNA SOLA VEZ
+   GRID (stats + rail)
    ========================= */
 .grid{
   display:grid;
-  grid-template-columns: 1fr 420px;
+  grid-template-columns: 1fr minmax(320px, 380px);
   gap: 22px;
   align-items:start;
 }
@@ -428,38 +423,6 @@ a{ color:inherit; text-decoration:none; }
     0 16px 40px rgba(0,0,0,.45);
 }
 
-.cardTitleRow{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom: 10px;
-}
-
-.cardTitle{ font-weight: 900; }
-
-.cta{
-  width:100%;
-  padding: 14px 16px;
-  border-radius: 14px;
-  border: 1px solid rgba(57,255,20,.45);
-  background: linear-gradient(180deg, rgba(57,255,20,.95), rgba(57,255,20,.75));
-  color: #051008;
-  font-weight: 800;
-  letter-spacing: .3px;
-  cursor:pointer;
-  box-shadow:
-    0 0 18px rgba(57,255,20,.35),
-    0 8px 20px rgba(0,0,0,.35);
-  transition: all .2s ease;
-}
-
-.cta:hover{
-  transform: translateY(-2px);
-  box-shadow:
-    0 0 28px rgba(57,255,20,.55),
-    0 12px 28px rgba(0,0,0,.45);
-}
-
 /* =========================
    Responsive
    ========================= */
@@ -472,22 +435,9 @@ a{ color:inherit; text-decoration:none; }
 }
 
 @media (max-width: 720px){
-  /* padding mobile consistente (y ya no se pega al topbar) */
-  .page{
-    padding-left: var(--pad-m);
-    padding-right: var(--pad-m);
-    padding-top: 18px;
-  }
-
-  .topbar{
-    padding-left: var(--pad-m);
-    padding-right: var(--pad-m);
-  }
-
-  .topbarInner{ max-width: 100%; }
+  :root{ --pad: 10px; }
 
   .hamburger{ display:flex; }
-
   .menuToggle:checked ~ .menuOverlay{ display:block; }
 
   .nav{
@@ -496,12 +446,10 @@ a{ color:inherit; text-decoration:none; }
     top: 64px;
     left: 0;
     right: 0;
-
     flex-direction:column;
     gap:10px;
-
     padding: 14px;
-    margin: 0 var(--pad-m);
+    margin: 0 10px;
     border-radius: 16px;
     border: 1px solid rgba(57,255,20,.22);
     background: rgba(10,14,22,.78);
@@ -512,67 +460,58 @@ a{ color:inherit; text-decoration:none; }
 
   .menuToggle:checked ~ .nav{ display:flex; }
 
-  .nav a{
-    padding: 12px 12px;
-    background: rgba(255,255,255,.04);
-    border: 1px solid rgba(255,255,255,.08);
-    border-radius: 12px;
-  }
+  .page{ padding-top: 18px; }
 
-  .heroCard,
-  .card,
-  .statCard{ width: 100%; }
-
-  .heroCard{ padding: 20px 14px; }
+  .heroCard,.card,.statCard{ width: 100% !important; }
 
   .scoreRow{
-    display:grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items:center;
-    gap: 10px;
+    display:grid !important;
+    grid-template-columns: 1fr auto 1fr !important;
+    align-items:center !important;
+    gap: 10px !important;
   }
 
-  .team{ min-width:0; width:auto; gap:8px; }
-  .teamRight{ justify-content:flex-end; text-align:right; }
+  .team{ min-width:0 !important; width:auto !important; gap:8px !important; }
+  .teamRight{ justify-content:flex-end !important; text-align:right !important; }
   .team > div{ min-width:0; }
 
   .teamName{
-    max-width: 140px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: 16px;
+    max-width: 140px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-size: 16px !important;
   }
 
   .teamSub{
-    max-width: 140px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    max-width: 140px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
   }
 
   .score{
-    font-size: 42px;
-    line-height: 1;
-    margin: 0;
-    justify-self:center;
+    font-size: 42px !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+    justify-self:center !important;
   }
 
-  .tabs{ gap: 8px; margin-top: 12px; }
-  .tab{ flex: 1 1 auto; text-align:center; font-size:13px; padding:8px 10px; }
-
-  .heroCard::before{ opacity: .55; }
+  .tab{
+    flex: 1 1 auto !important;
+    text-align: center !important;
+    font-size: 13px !important;
+    padding: 8px 10px !important;
+  }
 }
 
 @media (max-width: 360px){
-  .page{ padding-left: 10px; padding-right: 10px; }
-  .nav{ margin: 0 10px; }
-  .teamName, .teamSub{ max-width: 110px; }
-  .score{ font-size: 36px; }
+  :root{ --pad: 8px; }
+  .teamName, .teamSub{ max-width: 110px !important; }
+  .score{ font-size: 36px !important; }
 }
 
-/* Mejor look en pantallas grandes SIN exagerar */
 @media (min-width: 1200px){
-  .heroCard{ padding: 44px 56px; }
+  .heroCard{ padding: 46px 56px; }
   .score{ font-size: 72px; }
 }
