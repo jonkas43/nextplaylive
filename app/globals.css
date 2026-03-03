@@ -542,3 +542,31 @@ a{ color:inherit; text-decoration:none; }
   .teamName, .teamSub{ max-width: 110px !important; }
   .score{ font-size: 36px !important; }
 }
+
+/* Hacer la app más “edge-to-edge” en mobile */
+@media (max-width: 720px){
+  .page{
+    max-width: 100%;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  .topbar{
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  /* El hero ocupa más ancho visual */
+  .heroCard{
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
+
+/* Extra: iPhones muy angostos */
+@media (max-width: 390px){
+  .page{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+}
