@@ -114,7 +114,7 @@ a{ color:inherit; text-decoration:none; }
 }
 
 .hamburger{
-  display:none; /* solo mobile */
+  display:none;              /* solo mobile */
   width:44px;
   height:44px;
   border-radius:12px;
@@ -123,12 +123,10 @@ a{ color:inherit; text-decoration:none; }
   box-shadow: 0 0 18px rgba(57,255,20,.18);
   cursor:pointer;
   user-select:none;
-
   align-items:center;
   justify-content:center;
-
   position: relative;
-  z-index: 210;
+  z-index: 300; /* arriba del overlay */
 }
 
 .hamburger::before{
@@ -143,16 +141,21 @@ a{ color:inherit; text-decoration:none; }
   filter: drop-shadow(0 0 6px rgba(57,255,20,.35));
 }
 
-/* Overlay (cierra tocando fuera) */
+/* Overlay (tap fuera para cerrar) */
 .menuOverlay{
   display:none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.35);
+  backdrop-filter: blur(2px);
+  z-index: 150;
 }
 
 /* =========================
    PAGE
    ========================= */
 .page{
-  max-width: 1100px;
+  max-width: 1200px;   /* <- para que desktop no se vea “chico” */
   margin: 0 auto;
   padding: 28px 24px 60px;
   display:flex;
@@ -168,10 +171,8 @@ a{ color:inherit; text-decoration:none; }
   border-radius: 20px;
   padding: 36px 40px;
   overflow:hidden;
-
   background: rgba(10,14,22,.45);
   backdrop-filter: blur(10px);
-
   border: 1px solid rgba(57,255,20,.18);
   box-shadow:
     0 0 0 1px rgba(80,180,255,.06),
@@ -216,11 +217,9 @@ a{ color:inherit; text-decoration:none; }
   gap:8px;
   padding: 6px 10px;
   border-radius: 999px;
-
   border: 1px solid rgba(57,255,20,.35);
   background: rgba(12,18,28,.55);
   box-shadow: 0 0 22px rgba(57,255,20,.18);
-
   font-size: 12px;
   letter-spacing:.6px;
   color: var(--brand-green);
@@ -264,15 +263,10 @@ a{ color:inherit; text-decoration:none; }
   justify-content:center;
   font-weight: 800;
   color: rgba(8,12,18,.95);
-
   background: linear-gradient(180deg, rgba(57,255,20,.95), rgba(57,255,20,.70));
   box-shadow: 0 0 20px rgba(57,255,20,.22);
-
   flex: 0 0 auto;
 }
-
-/* wrapper de texto (si existe). Si no existe, no pasa nada */
-.teamText{ min-width: 0; }
 
 .teamName{ font-weight: 800; }
 .teamSub{
@@ -284,15 +278,12 @@ a{ color:inherit; text-decoration:none; }
   font-size: 64px;
   font-weight: 900;
   letter-spacing: 2px;
-
   background: linear-gradient(90deg, rgba(57,255,20,.95), rgba(80,180,255,.95));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-
   text-shadow:
     0 0 20px rgba(57,255,20,.28),
     0 0 38px rgba(80,180,255,.18);
-
   white-space: nowrap;
 }
 
@@ -449,20 +440,11 @@ a{ color:inherit; text-decoration:none; }
    Mobile (menú + score)
    ========================= */
 @media (max-width: 720px){
-
-  /* Hamburguesa visible */
   .hamburger{ display:flex; }
 
-  /* Overlay activo */
-  .menuOverlay{
-    display:none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,.45);
-    z-index: 150;
-  }
+  /* overlay visible cuando abre */
+  .menuToggle:checked ~ .menuOverlay{ display:block; }
 
-  /* Menú flotante */
   .nav{
     display:none;
     position:absolute;
@@ -479,11 +461,9 @@ a{ color:inherit; text-decoration:none; }
     background: rgba(10,14,22,.78);
     backdrop-filter: blur(12px);
     box-shadow: 0 18px 60px rgba(0,0,0,.55);
-    z-index: 200;
+    z-index: 250;
   }
 
-  /* Abierto */
-  .menuToggle:checked ~ .menuOverlay{ display:block; }
   .menuToggle:checked ~ .nav{ display:flex; }
 
   .nav a{
@@ -493,7 +473,6 @@ a{ color:inherit; text-decoration:none; }
     border-radius: 12px;
   }
 
-  /* HERO */
   .heroCard{
     padding: 20px 16px !important;
     border-radius: 18px !important;
@@ -518,16 +497,23 @@ a{ color:inherit; text-decoration:none; }
     text-align:right !important;
   }
 
-  /* Ellipsis robusto (funciona aunque no exista .teamText) */
-  .teamText{ min-width:0 !important; }
-  .teamName, .teamSub{
-    max-width: 120px !important;
+  /* Importante: el wrapper de texto puede encogerse */
+  .team > div{ min-width:0; }
+
+  .teamName{
+    max-width: 140px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-size: 16px !important;
+  }
+
+  .teamSub{
+    max-width: 140px !important;
     white-space: nowrap !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
   }
-
-  .teamName{ font-size: 16px !important; }
 
   .score{
     font-size: 42px !important;
@@ -551,8 +537,8 @@ a{ color:inherit; text-decoration:none; }
   .heroCard::before{ opacity: .55 !important; }
 }
 
-/* Pantallas súper angostas (NO anidado) */
+/* OJO: este @media va SEPARADO (no anidado) */
 @media (max-width: 360px){
-  .teamName, .teamSub{ max-width: 105px !important; }
+  .teamName, .teamSub{ max-width: 110px !important; }
   .score{ font-size: 36px !important; }
 }
