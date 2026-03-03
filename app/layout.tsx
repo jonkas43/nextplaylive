@@ -1,11 +1,11 @@
 import "./globals.css";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 
 export const metadata: Metadata = {
   title: "Next Play Live",
   description: "Scores en vivo",
   manifest: "/manifest.webmanifest",
-  themeColor: "#05070c",
+
   icons: {
     icon: [
       { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
@@ -13,6 +13,16 @@ export const metadata: Metadata = {
     ],
     apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
+
+  appleWebApp: {
+    capable: true,
+    title: "Next Play Live",
+    statusBarStyle: "black-translucent",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#39FF14",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -21,24 +31,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <header className="topbar">
           <div className="topbarInner">
-            <a href="/" aria-label="Next Play Live">
-              <img className="logo" src="/logo.png" alt="Next Play Live" />
-            </a>
+            <img className="logo" src="/logo.png" alt="Next Play Live" />
 
-            {/* Toggle invisible */}
             <input id="menuToggle" className="menuToggle" type="checkbox" />
 
-            {/* Botón hamburguesa */}
             <label htmlFor="menuToggle" className="hamburger" aria-label="Abrir menú">
               <span />
               <span />
               <span />
             </label>
 
-            {/* Overlay (click para cerrar) */}
-            <label htmlFor="menuToggle" className="menuOverlay" aria-hidden="true" />
+            <label htmlFor="menuToggle" className="menuOverlay" />
 
-            {/* Menú */}
             <nav className="nav">
               <a href="/">Home</a>
               <a href="/live">En vivo</a>
@@ -48,7 +52,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
         </header>
 
-        <main>{children}</main>
+        {children}
       </body>
     </html>
   );
