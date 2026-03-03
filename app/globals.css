@@ -4,13 +4,14 @@
    ========================= */
 
 :root{
-  --brand-green: #39FF14;                 /* 57,255,20 */
+  --brand-green: #39FF14;
   --brand-green-glow: rgba(57,255,20,.60);
   --brand-green-soft: rgba(57,255,20,.15);
   --brand-green-line: rgba(57,255,20,.22);
 
   --bg0:#05070c;
   --bg1:#070b12;
+
   --panel: rgba(12,18,28,.62);
   --panel2: rgba(10,15,24,.45);
 
@@ -62,9 +63,13 @@ a{ color:inherit; text-decoration:none; }
   padding:18px 24px;
   background: linear-gradient(180deg, #0b0f14 0%, #0a0d12 100%);
   border-bottom:1px solid var(--brand-green-line);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .topbarInner{
+  position: relative;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -99,9 +104,13 @@ a{ color:inherit; text-decoration:none; }
   text-shadow: 0 0 12px rgba(57,255,20,.35);
 }
 
-/* --- Hamburger (para tu layout con checkbox) --- */
+/* --- Hamburger (checkbox hack) --- */
 .menuToggle{
-  display:none; /* el input */
+  position:absolute;
+  width:1px;
+  height:1px;
+  opacity:0;
+  pointer-events:none;
 }
 
 .hamburger{
@@ -111,14 +120,32 @@ a{ color:inherit; text-decoration:none; }
   border-radius:12px;
   border: 1px solid rgba(57,255,20,.35);
   background: rgba(10,15,24,.35);
-  color: var(--brand-green);
+  box-shadow: 0 0 18px rgba(57,255,20,.18);
+  cursor:pointer;
+  user-select:none;
+
   align-items:center;
   justify-content:center;
-  font-size:28px;
-  line-height:1;
-  cursor:pointer;
-  box-shadow: 0 0 18px rgba(57,255,20,.18);
-  user-select:none;
+
+  position: relative;
+  z-index: 210;
+}
+
+.hamburger::before{
+  content:"";
+  width:22px;
+  height:2px;
+  background: var(--brand-green);
+  border-radius: 2px;
+  box-shadow:
+    0 -7px 0 var(--brand-green),
+    0  7px 0 var(--brand-green);
+  filter: drop-shadow(0 0 6px rgba(57,255,20,.35));
+}
+
+/* Overlay (cierra tocando fuera) */
+.menuOverlay{
+  display:none;
 }
 
 /* =========================
@@ -141,8 +168,10 @@ a{ color:inherit; text-decoration:none; }
   border-radius: 20px;
   padding: 36px 40px;
   overflow:hidden;
+
   background: rgba(10,14,22,.45);
   backdrop-filter: blur(10px);
+
   border: 1px solid rgba(57,255,20,.18);
   box-shadow:
     0 0 0 1px rgba(80,180,255,.06),
@@ -187,9 +216,11 @@ a{ color:inherit; text-decoration:none; }
   gap:8px;
   padding: 6px 10px;
   border-radius: 999px;
+
   border: 1px solid rgba(57,255,20,.35);
   background: rgba(12,18,28,.55);
   box-shadow: 0 0 22px rgba(57,255,20,.18);
+
   font-size: 12px;
   letter-spacing:.6px;
   color: var(--brand-green);
@@ -201,6 +232,7 @@ a{ color:inherit; text-decoration:none; }
   font-size: 13px;
 }
 
+/* Desktop score row */
 .scoreRow{
   display:flex;
   align-items:center;
@@ -232,10 +264,15 @@ a{ color:inherit; text-decoration:none; }
   justify-content:center;
   font-weight: 800;
   color: rgba(8,12,18,.95);
+
   background: linear-gradient(180deg, rgba(57,255,20,.95), rgba(57,255,20,.70));
   box-shadow: 0 0 20px rgba(57,255,20,.22);
+
   flex: 0 0 auto;
 }
+
+/* wrapper de texto (si existe). Si no existe, no pasa nada */
+.teamText{ min-width: 0; }
 
 .teamName{ font-weight: 800; }
 .teamSub{
@@ -247,12 +284,15 @@ a{ color:inherit; text-decoration:none; }
   font-size: 64px;
   font-weight: 900;
   letter-spacing: 2px;
+
   background: linear-gradient(90deg, rgba(57,255,20,.95), rgba(80,180,255,.95));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
   text-shadow:
     0 0 20px rgba(57,255,20,.28),
     0 0 38px rgba(80,180,255,.18);
+
   white-space: nowrap;
 }
 
@@ -405,29 +445,45 @@ a{ color:inherit; text-decoration:none; }
   .heroCard{ padding: 22px 18px; border-radius: 18px; }
 }
 
-/* Mobile: FIX marcador + menú */
+/* =========================
+   Mobile (menú + score)
+   ========================= */
 @media (max-width: 720px){
 
-  /* Menú hamburguesa */
+  /* Hamburguesa visible */
   .hamburger{ display:flex; }
+
+  /* Overlay activo */
+  .menuOverlay{
+    display:none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.45);
+    z-index: 150;
+  }
+
+  /* Menú flotante */
   .nav{
     display:none;
     position:absolute;
-    top: 76px;
-    right: 16px;
-    left: 16px;
+    top: 64px;
+    right: 0;
+    left: 0;
+
     flex-direction:column;
     gap:10px;
+
     padding: 14px;
     border-radius: 16px;
     border: 1px solid rgba(57,255,20,.22);
-    background: rgba(10,14,22,.75);
+    background: rgba(10,14,22,.78);
     backdrop-filter: blur(12px);
     box-shadow: 0 18px 60px rgba(0,0,0,.55);
-    z-index: 50;
+    z-index: 200;
   }
 
-  /* Cuando el checkbox está ON, muestra el menú */
+  /* Abierto */
+  .menuToggle:checked ~ .menuOverlay{ display:block; }
   .menuToggle:checked ~ .nav{ display:flex; }
 
   .nav a{
@@ -443,7 +499,7 @@ a{ color:inherit; text-decoration:none; }
     border-radius: 18px !important;
   }
 
-  /* Marcador: grid 1fr - auto - 1fr (NO se encima) */
+  /* Marcador: grid 1fr - auto - 1fr */
   .scoreRow{
     display:grid !important;
     grid-template-columns: 1fr auto 1fr !important;
@@ -462,23 +518,16 @@ a{ color:inherit; text-decoration:none; }
     text-align:right !important;
   }
 
-  /* Permite ellipsis sin romper layout */
-  .team > div{ min-width:0; }
-
-  .teamName{
-    max-width: 140px !important;
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-    font-size: 16px !important;
-  }
-
-  .teamSub{
-    max-width: 140px !important;
+  /* Ellipsis robusto (funciona aunque no exista .teamText) */
+  .teamText{ min-width:0 !important; }
+  .teamName, .teamSub{
+    max-width: 120px !important;
     white-space: nowrap !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
   }
+
+  .teamName{ font-size: 16px !important; }
 
   .score{
     font-size: 42px !important;
@@ -500,4 +549,10 @@ a{ color:inherit; text-decoration:none; }
   }
 
   .heroCard::before{ opacity: .55 !important; }
+}
+
+/* Pantallas súper angostas (NO anidado) */
+@media (max-width: 360px){
+  .teamName, .teamSub{ max-width: 105px !important; }
+  .score{ font-size: 36px !important; }
 }
