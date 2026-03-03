@@ -1,5 +1,6 @@
 import "./globals.css";
 import type { Metadata, Viewport } from "next";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Next Play Live",
@@ -24,36 +25,52 @@ export const viewport: Viewport = {
   themeColor: "#39FF14",
 };
 
+const LINKS = [
+  { href: "/", label: "Home" },
+  { href: "/live", label: "En vivo" },
+  { href: "/leagues", label: "Ligas" },
+  { href: "/login", label: "Login" },
+];
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es">
       <body>
         <header className="topbar">
           <div className="topbarInner">
-            <img className="logo" src="/logo.png" alt="Next Play Live" />
+            <Image
+              className="logo"
+              src="/logo.png"
+              alt="Next Play Live"
+              width={220}
+              height={60}
+              priority
+            />
 
             {/* Toggle invisible */}
             <input id="menuToggle" className="menuToggle" type="checkbox" />
 
-            {/* Botón hamburger (las 3 rayitas las dibuja CSS con ::before) */}
+            {/* Botón hamburger */}
             <label htmlFor="menuToggle" className="hamburger" aria-label="Abrir menú" />
 
             {/* Overlay para cerrar tocando fuera */}
             <label htmlFor="menuToggle" className="menuOverlay" aria-hidden="true" />
 
-            <nav className="nav">
-              <a href="/">Home</a>
-              <a href="/live">En vivo</a>
-              <a href="/leagues">Ligas</a>
-              <a href="/login">Login</a>
+            <nav className="nav" aria-label="Navegación principal">
+              {LINKS.map((l) => (
+                <a key={l.href} href={l.href}>
+                  {/* label dentro cierra el menú (desmarca checkbox) */}
+                  <label htmlFor="menuToggle" style={{ cursor: "pointer" }}>
+                    {l.label}
+                  </label>
+                </a>
+              ))}
             </nav>
           </div>
         </header>
 
-        {/* IMPORTANTE: esto aplica el layout centrado (.page) */}
         <main className="page">{children}</main>
       </body>
     </html>
   );
 }
-

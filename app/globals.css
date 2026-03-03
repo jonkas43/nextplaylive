@@ -40,12 +40,70 @@ html,body{
   overflow-x:hidden;
 }
 
+html{
+  background: var(--bg0);
+}
+
+/* =========================
+   FONDO “ESTADIO” (CSS ONLY)
+   - Luces (bokeh) + glow + viñeta + grano
+   ========================= */
 body{
+  position: relative;
+  isolation: isolate; /* para que ::before/::after con z-index funcionen bien */
+  background: linear-gradient(180deg, var(--bg1) 0%, var(--bg0) 100%);
+}
+
+/* Luces / atmósfera */
+body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events:none;
+  z-index: -2;
   background:
-    radial-gradient(900px 500px at 22% 18%, rgba(57,255,20,.14), transparent 60%),
-    radial-gradient(800px 420px at 78% 26%, rgba(80,180,255,.10), transparent 60%),
-    radial-gradient(900px 700px at 50% 110%, rgba(0,0,0,.55), transparent 55%),
-    linear-gradient(180deg, var(--bg1) 0%, var(--bg0) 100%) !important;
+    /* “flood lights” derecha */
+    radial-gradient(900px 520px at 92% 18%, rgba(255,255,255,.10), transparent 60%),
+    radial-gradient(650px 380px at 88% 22%, rgba(80,180,255,.12), transparent 62%),
+
+    /* “flood lights” izquierda */
+    radial-gradient(850px 520px at 8% 20%, rgba(255,255,255,.08), transparent 62%),
+    radial-gradient(620px 360px at 12% 26%, rgba(57,255,20,.12), transparent 62%),
+
+    /* glow verde central suave */
+    radial-gradient(900px 520px at 50% 30%, rgba(57,255,20,.10), transparent 66%),
+
+    /* viñeta / profundidad */
+    radial-gradient(1100px 900px at 50% 115%, rgba(0,0,0,.70), transparent 55%),
+    radial-gradient(1200px 900px at 50% -10%, rgba(0,0,0,.55), transparent 60%),
+
+    /* base */
+    linear-gradient(180deg, #070b12 0%, #05070c 100%);
+}
+
+/* Grano + partículas sutiles */
+body::after{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events:none;
+  z-index: -1;
+  opacity: .16;
+  background:
+    /* puntitos tipo “polvo” */
+    radial-gradient(rgba(255,255,255,.10) 1px, transparent 1px),
+    radial-gradient(rgba(57,255,20,.10) 1px, transparent 1px),
+    /* micro-grain (barato) */
+    repeating-linear-gradient(0deg, rgba(255,255,255,.05) 0 1px, transparent 1px 3px);
+  background-size:
+    22px 22px,
+    34px 34px,
+    3px 3px;
+  background-position:
+    0 0,
+    12px 8px,
+    0 0;
+  mix-blend-mode: overlay;
 }
 
 a{ color:inherit; text-decoration:none; }
@@ -62,11 +120,12 @@ a{ color:inherit; text-decoration:none; }
    ========================= */
 .topbar{
   padding:18px 24px;
-  background: linear-gradient(180deg, #0b0f14 0%, #0a0d12 100%);
+  background: linear-gradient(180deg, rgba(11,15,20,.92) 0%, rgba(10,13,18,.82) 100%);
   border-bottom:1px solid var(--brand-green-line);
   position: sticky;
   top: 0;
   z-index: 100;
+  backdrop-filter: blur(10px);
 }
 
 .topbarInner{
@@ -478,7 +537,7 @@ a{ color:inherit; text-decoration:none; }
     gap:10px;
 
     padding: 14px;
-    margin: 0 8px;                 /* alineado al edge-to-edge */
+    margin: 0 8px;
     border-radius: 16px;
     border: 1px solid rgba(57,255,20,.22);
     background: rgba(10,14,22,.78);
@@ -578,4 +637,3 @@ a{ color:inherit; text-decoration:none; }
   .teamName, .teamSub{ max-width: 110px !important; }
   .score{ font-size: 36px !important; }
 }
-
