@@ -15,12 +15,23 @@ export default function RootLayout({
       <body>
         <header className="topbar">
           <div className="topbarInner">
-            <div className="brand">
-              <a href="/">
-                <img src="/logo.png" alt="Next Play Live" className="logo" />
-              </a>
-            </div>
+            <img className="logo" src="/logo.png" alt="Next Play Live" />
 
+            {/* Toggle invisible para menú mobile */}
+            <input id="menuToggle" className="menuToggle" type="checkbox" />
+
+            {/* Botón hamburguesa */}
+            <label
+              htmlFor="menuToggle"
+              className="hamburger"
+              aria-label="Abrir menú"
+            >
+              <span />
+              <span />
+              <span />
+            </label>
+
+            {/* Menú */}
             <nav className="nav">
               <a href="/">Home</a>
               <a href="/live">En vivo</a>
@@ -30,7 +41,7 @@ export default function RootLayout({
           </div>
         </header>
 
-        <main className="container">{children}</main>
+        {children}
       </body>
     </html>
   );
