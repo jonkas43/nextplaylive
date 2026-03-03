@@ -345,9 +345,10 @@ body::after{
    ========================= */
 .grid{
   display:grid;
-  grid-template-columns: 1fr 420px;
+  grid-template-columns: minmax(0,1fr) 420px;
   gap: 22px;
   align-items:start;
+  width:100%;
 }
 
 .stack{
