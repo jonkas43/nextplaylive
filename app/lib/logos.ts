@@ -2,7 +2,6 @@
 export type Sport = "nba" | "nfl" | "mlb" | "soccer";
 
 const SOCCER_MAP: Record<string, string> = {
-  // Liga MX (por ahora 2; luego metemos más)
   america: "https://upload.wikimedia.org/wikipedia/commons/6/6d/CA_Am%C3%A9rica.png",
   monterrey: "https://upload.wikimedia.org/wikipedia/commons/1/10/CF_Monterrey_A11.PNG",
 };
