@@ -1,6 +1,7 @@
 // app/page.tsx
 import Image from "next/image";
 import { getTeamLogoUrl } from "@/app/lib/logos";
+import { getTeamLogo } from "@/app/lib/teamLogos";
 
 function TeamLogo({
   sport,
@@ -12,11 +13,15 @@ function TeamLogo({
   fallback: string;
 }) {
   const primary = getTeamLogoUrl(sport, codeOrName);
-  const src = primary;
+  const mapped = getTeamLogo(codeOrName);
+  const src = primary || mapped;
 
-  if (!src) return <div className="badge">{fallback}</div>;
+  // 👇 evita el cuadrito roto
+  if (!src || src === "/team-placeholder.png") {
+    return <div className="badge">{fallback}</div>;
+  }
 
-  // Soccer: <img> para SVG remotos
+  // Soccer: usar <img> (remotos)
   if (sport === "soccer") {
     return (
       <img
