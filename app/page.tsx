@@ -1,7 +1,7 @@
 // app/page.tsx
 import Image from "next/image";
 import { getTeamLogoUrl } from "@/app/lib/logos";
-import { getTeamLogo } from "@/lib/teamLogos";
+import { getTeamLogo } from "@/app/lib/teamLogos";
 
 function TeamLogo({
   sport,
