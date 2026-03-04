@@ -5,7 +5,6 @@ import { getTeamLogoUrl } from "@/app/lib/logos";
 function BasketballCourt() {
   return (
     <svg className="courtSvg" viewBox="0 0 1000 520" preserveAspectRatio="none">
-      {/* madera */}
       <defs>
         <linearGradient id="wood" x1="0" x2="0" y1="0" y2="1">
           <stop offset="0" stopColor="rgba(200,150,90,.55)" />
@@ -14,22 +13,16 @@ function BasketballCourt() {
       </defs>
 
       <rect x="0" y="0" width="1000" height="520" fill="url(#wood)" />
-      {/* líneas */}
       <g stroke="rgba(255,255,255,.55)" strokeWidth="4" fill="none">
         <rect x="40" y="40" width="920" height="440" rx="14" />
         <line x1="500" y1="40" x2="500" y2="480" />
         <circle cx="500" cy="260" r="70" />
-
-        {/* áreas */}
         <rect x="40" y="160" width="160" height="200" />
         <rect x="800" y="160" width="160" height="200" />
-
-        {/* aro/semicírculos */}
         <circle cx="175" cy="260" r="60" />
         <circle cx="825" cy="260" r="60" />
       </g>
 
-      {/* brillo */}
       <rect x="0" y="0" width="1000" height="520" fill="rgba(0,0,0,.20)" />
       <circle cx="820" cy="120" r="220" fill="rgba(80,180,255,.12)" />
       <circle cx="180" cy="120" r="220" fill="rgba(57,255,20,.10)" />
@@ -38,19 +31,33 @@ function BasketballCourt() {
 }
 
 const pbp = [
-  {
-    t: "6:48",
-    main: "Moussa Diabaté encesta 1/2 TL — 33 - 40",
-    sub: "Falta de tiro sobre Khris Middleton.",
-  },
+  { t: "6:48", main: "Moussa Diabaté encesta 1/2 TL — 33 - 40", sub: "Falta de tiro sobre Khris Middleton." },
   { t: "7:05", main: "Dallas pierde el balón", sub: "Robo de CHA en el perímetro." },
   { t: "7:22", main: "Triple de CHA — 33 - 39", sub: "Catch & shoot desde la esquina." },
 ];
 
+function TeamLogo({ sport, code }: { sport: "nba" | "nfl" | "mlb" | "soccer"; code: string }) {
+  const url = getTeamLogoUrl(sport, code);
+
+  if (!url) {
+    return <div className="teamLogo">{code}</div>; // fallback (iniciales)
+  }
+
+  return (
+    <Image
+      src={url}
+      alt={code}
+      width={46}
+      height={46}
+      className="teamLogoImg"
+      priority
+    />
+  );
+}
+
 export default function MatchPage({ params }: { params: { id: string } }) {
   return (
     <div className="page">
-      {/* Header tipo SofaScore */}
       <div className="matchTop">
         <Link href="/results" className="backBtn" aria-label="Volver">
           ←
@@ -70,14 +77,7 @@ export default function MatchPage({ params }: { params: { id: string } }) {
         <div className="matchScoreBar">
           {/* HOME */}
           <div className="teamMini">
-            <Image
-              src={getTeamLogoUrl("nba", "DAL")!}
-              alt="DAL"
-              width={46}
-              height={46}
-              className="teamLogoImg"
-              priority
-            />
+            <TeamLogo sport="nba" code="DAL" />
             <div className="teamMetaWrap">
               <div className="teamAbbr">DAL</div>
               <div className="teamRec">21-39</div>
@@ -96,18 +96,10 @@ export default function MatchPage({ params }: { params: { id: string } }) {
               <div className="teamAbbr">CHA</div>
               <div className="teamRec">30-31</div>
             </div>
-            <Image
-              src={getTeamLogoUrl("nba", "CHA")!}
-              alt="CHA"
-              width={46}
-              height={46}
-              className="teamLogoImg"
-              priority
-            />
+            <TeamLogo sport="nba" code="CHA" />
           </div>
         </div>
 
-        {/* Tabs */}
         <div className="matchTabs" style={{ marginTop: 14 }}>
           <div className="matchTab matchTabActive">PARTIDO</div>
           <div className="matchTab">EST.</div>
@@ -115,14 +107,12 @@ export default function MatchPage({ params }: { params: { id: string } }) {
         </div>
       </div>
 
-      {/* Cancha */}
       <div className="card courtCard">
         <div className="court">
           <BasketballCourt />
         </div>
       </div>
 
-      {/* Play by play */}
       <div className="sectionTitle" style={{ marginTop: 10 }}>
         Jugadas
       </div>

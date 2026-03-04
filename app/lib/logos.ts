@@ -1,6 +1,6 @@
 export type Sport = "nba" | "nfl" | "mlb" | "soccer";
 
-export function getTeamLogoUrl(sport: Sport, code: string) {
+export function getTeamLogoUrl(sport: Sport, code: string): string | null {
   const c = code.toLowerCase();
 
   if (sport === "nba") {
@@ -15,5 +15,6 @@ export function getTeamLogoUrl(sport: Sport, code: string) {
     return "https://a.espncdn.com/i/teamlogos/mlb/500/" + c + ".png";
   }
 
+  // soccer lo dejamos null por ahora (luego metemos Liga MX / Champions)
   return null;
 }
