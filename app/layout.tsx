@@ -1,6 +1,19 @@
 import "./globals.css";
 import type { Metadata, Viewport } from "next";
 import Image from "next/image";
+import { Teko, Rajdhani } from "next/font/google";
+
+const teko = Teko({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  variable: "--font-teko",
+});
+
+const rajdhani = Rajdhani({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-rajdhani",
+});
 
 export const metadata: Metadata = {
   title: "Next Play Live",
@@ -11,8 +24,6 @@ export const metadata: Metadata = {
       { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
       { url: "/icons/icon-512.png", sizes: "512x512", type: "image/png" },
     ],
-    // Si NO tienes apple-touch-icon.png, déjalo comentado.
-    // apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
   appleWebApp: {
     capable: true,
@@ -34,7 +45,7 @@ const LINKS = [
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es">
+    <html lang="es" className={${teko.variable} ${rajdhani.variable}}>
       <body>
         <header className="topbar">
           <div className="topbarInner">
@@ -59,7 +70,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <nav className="nav" aria-label="Navegación principal">
               {LINKS.map((l) => (
                 <a key={l.href} href={l.href}>
-                  {/* label dentro cierra el menú (desmarca checkbox) */}
                   <label htmlFor="menuToggle" style={{ cursor: "pointer" }}>
                     {l.label}
                   </label>

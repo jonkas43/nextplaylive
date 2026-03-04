@@ -1,7 +1,10 @@
 /* =========================
-   NEXT PLAY LIVE — globals (CLEAN)
+   NEXT PLAY LIVE — globals (CLEAN + FONTS)
    Verde oficial: #39FF14
    Fondo: /public/stadium-bg.png
+   Fonts:
+   - UI: Rajdhani
+   - Score / números: Teko
    ========================= */
 
 :root{
@@ -11,6 +14,10 @@
   --bg0:#05070c;
   --text:#e7eef8;
   --muted:#9fb0c4;
+
+  /* Next/font variables (desde layout.tsx) */
+  --font-ui: var(--font-rajdhani);
+  --font-score: var(--font-teko);
 }
 
 *{ box-sizing:border-box; }
@@ -20,7 +27,10 @@ html,body{
   margin:0;
   padding:0;
   color:var(--text);
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+  /* UI font default */
+  font-family: var(--font-ui), system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
   overflow-x:hidden;
 }
 
@@ -99,11 +109,10 @@ body::after{
   align-items:center;
   justify-content:space-between;
 
-  /* IMPORTANT: no lo dejes fijo en 1200 si quieres más ancho */
   max-width: 1400px;
   margin:0 auto;
   gap:18px;
-  padding: 0 0; /* lo controla .topbar */
+  padding: 0;
 }
 
 .logo{
@@ -179,10 +188,8 @@ body::after{
 
 /* =========================
    PAGE (RESTORED)
-   - Desktop: más ancho pero controlado
    ========================= */
 .page{
-  /* Esto es lo que te lo hace “más ancho” en desktop sin volverse loco */
   max-width: 1400px;
   width: 100%;
   margin: 0 auto;
@@ -192,7 +199,6 @@ body::after{
   flex-direction:column;
   gap:18px;
 
-  /* separa del header sticky en mobile/desktop */
   scroll-margin-top: 90px;
 }
 
@@ -301,16 +307,22 @@ body::after{
 .teamName{ font-weight: 800; }
 .teamSub{ color: rgba(231,238,248,.65); font-size: 12px; }
 
+/* SCORE font (Teko) */
 .score{
+  font-family: var(--font-score), var(--font-ui), system-ui, sans-serif;
   font-size: 64px;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 2px;
+  line-height: .95;
+
   background: linear-gradient(90deg, rgba(57,255,20,.95), rgba(80,180,255,.95));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
   text-shadow:
     0 0 24px rgba(57,255,20,.45),
     0 0 50px rgba(80,180,255,.30);
+
   white-space: nowrap;
 }
 
@@ -341,7 +353,6 @@ body::after{
 
 /* =========================
    GRID (stats + rail)
-   - Desktop: rail más ancho
    ========================= */
 .grid{
   display:grid;
@@ -458,7 +469,7 @@ body::after{
   .grid{ grid-template-columns: 1fr; }
   .statsGrid{ grid-template-columns: 1fr; }
   .team{ min-width: 0; }
-  .score{ font-size: 42px; }
+  .score{ font-size: 44px; }
   .heroCard{ padding: 22px 18px; border-radius: 18px; }
 }
 
@@ -496,13 +507,11 @@ body::after{
     border-radius: 12px;
   }
 
-  /* Edge-to-edge */
+  /* Edge-to-edge + separación del header */
   .page{
     max-width: 100% !important;
     padding-left: 8px !important;
     padding-right: 8px !important;
-
-    /* clave: separa del header sticky */
     padding-top: 18px !important;
   }
 
@@ -533,8 +542,8 @@ body::after{
   .teamName{ font-size: 16px !important; }
 
   .score{
-    font-size: 42px !important;
-    line-height: 1 !important;
+    font-size: 44px !important;
+    line-height: .95 !important;
     margin: 0 !important;
     justify-self:center !important;
   }
@@ -549,11 +558,11 @@ body::after{
   .page{ padding-left: 6px !important; padding-right: 6px !important; }
   .nav{ margin: 0 6px !important; }
   .teamName,.teamSub{ max-width: 110px !important; }
-  .score{ font-size: 36px !important; }
+  .score{ font-size: 38px !important; }
 }
 
-/* Desktop grande: un poco más “pro” */
+/* Desktop grande */
 @media (min-width: 1200px){
   .heroCard{ padding: 48px 60px; }
-  .score{ font-size: 72px; }
+  .score{ font-size: 76px; }
 }
