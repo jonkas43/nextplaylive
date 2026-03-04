@@ -1,7 +1,6 @@
 // app/page.tsx
 import Image from "next/image";
 import { getTeamLogoUrl } from "@/app/lib/logos";
-import { getTeamLogo } from "@/app/lib/teamLogos";
 
 function TeamLogo({
   sport,
@@ -13,8 +12,7 @@ function TeamLogo({
   fallback: string;
 }) {
   const primary = getTeamLogoUrl(sport, codeOrName);
-  const mapped = getTeamLogo(codeOrName);
-  const src = primary || mapped;
+  const src = primary;
 
   if (!src) return <div className="badge">{fallback}</div>;
 
