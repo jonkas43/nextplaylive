@@ -13,8 +13,24 @@ function TeamLogo({
 }) {
   const src = getTeamLogoUrl(sport, codeOrName);
 
+  // si no hay url, cae al badge
   if (!src) return <div className="badge">{fallback}</div>;
 
+  // ✅ Soccer: usar <img> (evita que Next/Image lo “rompa”)
+  if (sport === "soccer") {
+    return (
+      <img
+        src={src}
+        alt={fallback}
+        width={46}
+        height={46}
+        className="teamLogoImg"
+        style={{ objectFit: "contain" }}
+      />
+    );
+  }
+
+  // NBA/NFL/MLB: next/image OK
   return (
     <Image
       src={src}
@@ -40,7 +56,6 @@ export default function HomePage() {
 
         <div className="scoreRow">
           <div className="team">
-            {/* ✅ Logo América (usa soccer + nombre/key) */}
             <TeamLogo sport="soccer" codeOrName="Club América" fallback="CA" />
             <div>
               <div className="teamName">Club América</div>
@@ -55,7 +70,6 @@ export default function HomePage() {
               <div className="teamName">Monterrey</div>
               <div className="teamSub">Visitante</div>
             </div>
-            {/* ✅ Logo Monterrey */}
             <TeamLogo sport="soccer" codeOrName="Monterrey" fallback="MTY" />
           </div>
         </div>
