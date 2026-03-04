@@ -1,37 +1,36 @@
-export const TEAM_LOGOS: Record<string, string> = {
-  // Soccer (usar PNG thumb, más estable que SVG)
+type Sport = "soccer" | "nba" | "nfl" | "mlb";
+
+const SOCCER_MAP: Record<string, string> = {
   america:
     "https://upload.wikimedia.org/wikipedia/en/thumb/1/1f/Club_Am%C3%A9rica_logo.svg/512px-Club_Am%C3%A9rica_logo.svg.png",
+  clubamerica:
+    "https://upload.wikimedia.org/wikipedia/en/thumb/1/1f/Club_Am%C3%A9rica_logo.svg/512px-Club_Am%C3%A9rica_logo.svg.png",
+
   monterrey:
     "https://upload.wikimedia.org/wikipedia/en/thumb/9/9a/C.F._Monterrey_logo.svg/512px-C.F._Monterrey_logo.svg.png",
-
-  // NBA
-  lakers: "https://loodibee.com/wp-content/uploads/nba-los-angeles-lakers-logo.png",
-  warriors: "https://loodibee.com/wp-content/uploads/nba-golden-state-warriors-logo.png",
-  celtics: "https://loodibee.com/wp-content/uploads/nba-boston-celtics-logo.png",
-
-  // NFL
-  chiefs: "https://loodibee.com/wp-content/uploads/nfl-kansas-city-chiefs-logo.png",
-  eagles: "https://loodibee.com/wp-content/uploads/nfl-philadelphia-eagles-logo.png",
-
-  // MLB
-  yankees: "https://loodibee.com/wp-content/uploads/mlb-new-york-yankees-logo.png",
-  dodgers: "https://loodibee.com/wp-content/uploads/mlb-los-angeles-dodgers-logo.png",
+  cfmonterrey:
+    "https://upload.wikimedia.org/wikipedia/en/thumb/9/9a/C.F._Monterrey_logo.svg/512px-C.F._Monterrey_logo.svg.png",
 };
 
-function normalizeKey(input: string) {
+const ESPN_MAP: Record<string, string> = {
+  // ejemplo si luego quieres usar ESPN logos
+  // lakers: "https://a.espncdn.com/i/teamlogos/nba/500/lal.png",
+};
+
+function normalize(input: string) {
   return input
     .toLowerCase()
     .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "") // quita acentos
-    .replace(/[^a-z0-9]+/g, ""); // quita espacios/guiones
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "");
 }
 
-export function getTeamLogo(team: string) {
-  const key = normalizeKey(team);
+export function getTeamLogoUrl(sport: Sport, codeOrName: string) {
+  const key = normalize(codeOrName);
 
-  // caso especial: "Club América" -> "america"
-  if (key === "clubamerica") return TEAM_LOGOS.america;
+  if (sport === "soccer") {
+    return SOCCER_MAP[key] || "";
+  }
 
-  return TEAM_LOGOS[key] || "";
+  return ESPN_MAP[key] || "";
 }
