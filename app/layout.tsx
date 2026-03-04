@@ -3,18 +3,6 @@ import type { Metadata, Viewport } from "next";
 import Image from "next/image";
 import { Teko, Rajdhani } from "next/font/google";
 
-const teko = Teko({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  variable: "--font-teko",
-});
-
-const rajdhani = Rajdhani({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-rajdhani",
-});
-
 export const metadata: Metadata = {
   title: "Next Play Live",
   description: "Scores en vivo",
@@ -35,6 +23,20 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   themeColor: "#39FF14",
 };
+
+const teko = Teko({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-teko",
+  display: "swap",
+});
+
+const rajdhani = Rajdhani({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-rajdhani",
+  display: "swap",
+});
 
 const LINKS = [
   { href: "/", label: "Home" },
@@ -58,13 +60,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               priority
             />
 
-            {/* Toggle invisible */}
             <input id="menuToggle" className="menuToggle" type="checkbox" />
-
-            {/* Botón hamburger */}
             <label htmlFor="menuToggle" className="hamburger" aria-label="Abrir menú" />
-
-            {/* Overlay para cerrar tocando fuera */}
             <label htmlFor="menuToggle" className="menuOverlay" aria-hidden="true" />
 
             <nav className="nav" aria-label="Navegación principal">
