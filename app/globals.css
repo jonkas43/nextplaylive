@@ -809,3 +809,9 @@ body::after{
   background: rgba(255,255,255,.06);
   border: 1px solid rgba(255,255,255,.10);
 }
+
+.teamLogoImg {
+  border-radius: 14px;
+  box-shadow: 0 0 0 1px rgba(57, 255, 20, 0.35);
+  background: rgba(0, 0, 0, 0.25);
+}

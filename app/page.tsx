@@ -1,4 +1,34 @@
 // app/page.tsx
+import Image from "next/image";
+import { getTeamLogoUrl } from "@/app/lib/logos";
+
+function TeamLogo({
+  sport,
+  code,
+  fallback,
+}: {
+  sport: "soccer" | "nba" | "nfl" | "mlb";
+  code: string;
+  fallback: string;
+}) {
+  const src = getTeamLogoUrl(sport, code);
+
+  if (!src) {
+    return <div className="badge">{fallback}</div>;
+  }
+
+  return (
+    <Image
+      src={src}
+      alt={fallback}
+      width={46}
+      height={46}
+      className="teamLogoImg"
+      priority
+    />
+  );
+}
+
 export default function HomePage() {
   return (
     <div className="page">
@@ -12,7 +42,7 @@ export default function HomePage() {
 
         <div className="scoreRow">
           <div className="team">
-            <div className="badge">CA</div>
+            <TeamLogo sport="soccer" code="america" fallback="CA" />
             <div>
               <div className="teamName">Club América</div>
               <div className="teamSub">Local</div>
@@ -26,7 +56,7 @@ export default function HomePage() {
               <div className="teamName">Monterrey</div>
               <div className="teamSub">Visitante</div>
             </div>
-            <div className="badge">MTY</div>
+            <TeamLogo sport="soccer" code="monterrey" fallback="MTY" />
           </div>
         </div>
 
@@ -133,7 +163,7 @@ export default function HomePage() {
 
             <div className="cardSub">Radio Next Play · Narrador real</div>
 
-            <button className="cta">▶ Escuchar ahora</button>
+            <button className="cta">▶️ Escuchar ahora</button>
           </div>
 
           <div className="card">
