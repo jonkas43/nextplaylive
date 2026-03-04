@@ -46,9 +46,11 @@ const LINKS = [
 ];
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const fontVars = [teko.variable, rajdhani.variable].join(" ");
+
   return (
     <html lang="es">
-      <body className={${teko.variable} ${rajdhani.variable}}>
+      <body className={fontVars}>
         <header className="topbar">
           <div className="topbarInner">
             <Image
@@ -61,19 +63,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             />
 
             <input id="menuToggle" className="menuToggle" type="checkbox" />
-            <label
-              htmlFor="menuToggle"
-              className="hamburger"
-              aria-label="Abrir menú"
-            />
+            <label htmlFor="menuToggle" className="hamburger" aria-label="Abrir menú" />
             <label htmlFor="menuToggle" className="menuOverlay" aria-hidden="true" />
 
             <nav className="nav" aria-label="Navegación principal">
               {LINKS.map((l) => (
                 <a key={l.href} href={l.href}>
-                  <label htmlFor="menuToggle" style={{ cursor: "pointer" }}>
-                    {l.label}
-                  </label>
+                  {l.label}
                 </a>
               ))}
             </nav>
