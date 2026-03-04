@@ -27,5 +27,9 @@ function normalizeKey(input: string) {
 
 export function getTeamLogo(team: string) {
   const key = normalizeKey(team);
+
+  // caso especial: "Club América" -> "america"
+  if (key === "clubamerica") return TEAM_LOGOS.america;
+
   return TEAM_LOGOS[key] || "";
 }
