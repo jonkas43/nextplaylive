@@ -605,3 +605,113 @@ html, body{
 .heroMeta, .heroTime, .teamSub{
   font-family: var(--font-ui);
 }
+
+/* =========================
+   HERO TUNING (v1)
+   Pega al final del globals.css
+   ========================= */
+
+/* HERO: que se sienta más “TV / Sports” */
+.heroCard{
+  border-radius: 24px;
+  padding: 44px 56px;
+  background: rgba(8,12,18,.58);
+  border: 1px solid rgba(57,255,20,.20);
+  box-shadow:
+    0 0 0 1px rgba(80,180,255,.08),
+    0 22px 70px rgba(0,0,0,.58);
+}
+
+/* Header del hero */
+.heroTop{
+  gap: 14px;
+}
+
+.chipLive{
+  padding: 8px 14px;
+  font-size: 12px;
+  letter-spacing: .9px;
+}
+
+.heroMeta,.heroTime{
+  font-size: 14px;
+  color: rgba(231,238,248,.78);
+}
+
+/* Marcador: más limpio y centrado */
+.scoreRow{
+  margin-top: 18px;
+  gap: 22px;
+}
+
+.team{
+  min-width: 240px; /* da más “presencia” en desktop */
+  gap: 12px;
+}
+
+.badge{
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  font-size: 18px;
+}
+
+.teamName{
+  font-size: 18px;
+  letter-spacing: .2px;
+}
+
+.teamSub{
+  font-size: 13px;
+  margin-top: 2px;
+}
+
+.score{
+  font-size: 78px;
+  letter-spacing: 3px;
+  text-shadow:
+    0 0 26px rgba(57,255,20,.42),
+    0 0 55px rgba(80,180,255,.28);
+}
+
+/* Tabs: más “botón” y menos “pill plano” */
+.tabs{
+  margin-top: 18px;
+  gap: 12px;
+}
+
+.tab{
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: rgba(10,15,24,.42);
+  border: 1px solid rgba(255,255,255,.10);
+}
+
+.tabActive{
+  background: rgba(12,18,28,.58);
+  border-color: rgba(57,255,20,.38);
+  box-shadow: 0 0 22px rgba(57,255,20,.16);
+}
+
+/* =========================
+   RESPONSIVE HERO
+   ========================= */
+@media (max-width: 980px){
+  .heroCard{ padding: 26px 18px; border-radius: 20px; }
+  .team{ min-width: 0; }
+  .score{ font-size: 48px; }
+  .badge{ width: 40px; height: 40px; }
+  .teamName{ font-size: 16px; }
+}
+
+@media (max-width: 720px){
+  .heroCard{ padding: 22px 14px; }
+  .score{ font-size: 46px !important; letter-spacing: 2px; }
+
+  /* Evita que se “amontone” */
+  .teamName{ max-width: 130px !important; }
+  .teamSub{ max-width: 130px !important; }
+
+  /* Tabs a 2 filas más prolijas */
+  .tab{ padding: 10px 10px !important; }
+}
