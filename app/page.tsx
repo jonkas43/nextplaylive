@@ -4,18 +4,16 @@ import { getTeamLogoUrl } from "@/app/lib/logos";
 
 function TeamLogo({
   sport,
-  code,
+  codeOrName,
   fallback,
 }: {
   sport: "soccer" | "nba" | "nfl" | "mlb";
-  code: string;
+  codeOrName: string;
   fallback: string;
 }) {
-  const src = getTeamLogoUrl(sport, code);
+  const src = getTeamLogoUrl(sport, codeOrName);
 
-  if (!src) {
-    return <div className="badge">{fallback}</div>;
-  }
+  if (!src) return <div className="badge">{fallback}</div>;
 
   return (
     <Image
@@ -42,7 +40,8 @@ export default function HomePage() {
 
         <div className="scoreRow">
           <div className="team">
-            <TeamLogo sport="soccer" code="america" fallback="CA" />
+            {/* ✅ Logo América (usa soccer + nombre/key) */}
+            <TeamLogo sport="soccer" codeOrName="Club América" fallback="CA" />
             <div>
               <div className="teamName">Club América</div>
               <div className="teamSub">Local</div>
@@ -56,7 +55,8 @@ export default function HomePage() {
               <div className="teamName">Monterrey</div>
               <div className="teamSub">Visitante</div>
             </div>
-            <TeamLogo sport="soccer" code="monterrey" fallback="MTY" />
+            {/* ✅ Logo Monterrey */}
+            <TeamLogo sport="soccer" codeOrName="Monterrey" fallback="MTY" />
           </div>
         </div>
 
