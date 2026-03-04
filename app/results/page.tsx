@@ -1,4 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
+import { getTeamLogoUrl } from "@/app/lib/logos";
 
 type Match = {
   id: string;
@@ -9,30 +11,67 @@ type Match = {
   homeScore: number;
   awayScore: number;
   status: string;
+
+  // 👇 clave para soccer logos (usa el map en logos.ts)
+  homeLogoKey?: string;
+  awayLogoKey?: string;
+
+  // 👇 para futuro: nba / nfl / mlb / soccer
+  sport?: "soccer" | "nba" | "nfl" | "mlb";
 };
 
 const matches: Match[] = [
   {
     id: "america-monterrey",
+    sport: "soccer",
     homeCode: "CA",
     homeName: "América",
+    homeLogoKey: "america",
     awayCode: "MTY",
     awayName: "Monterrey",
+    awayLogoKey: "monterrey",
     homeScore: 2,
     awayScore: 1,
     status: "EN VIVO 62’",
   },
   {
     id: "pumas-chivas",
+    sport: "soccer",
     homeCode: "PUM",
     homeName: "Pumas",
+    homeLogoKey: "pumas", // hoy no existe en el map → caerá al badge
     awayCode: "CHI",
     awayName: "Chivas",
+    awayLogoKey: "chivas", // hoy no existe en el map → caerá al badge
     homeScore: 0,
     awayScore: 0,
     status: "Final",
   },
 ];
+
+function TeamBadgeOrLogo({
+  sport,
+  logoKey,
+  fallback,
+}: {
+  sport: "soccer" | "nba" | "nfl" | "mlb";
+  logoKey?: string;
+  fallback: string;
+}) {
+  const src = logoKey ? getTeamLogoUrl(sport, logoKey) : null;
+
+  if (!src) return <div className="badge">{fallback}</div>;
+
+  return (
+    <Image
+      src={src}
+      alt={fallback}
+      width={38}
+      height={38}
+      className="teamLogoImg"
+    />
+  );
+}
 
 export default function ResultsPage() {
   return (
@@ -86,7 +125,11 @@ export default function ResultsPage() {
 
           <div className="scoreRow">
             <div className="team">
-              <div className="badge">{m.homeCode}</div>
+              <TeamBadgeOrLogo
+                sport={m.sport || "soccer"}
+                logoKey={m.homeLogoKey}
+                fallback={m.homeCode}
+              />
               <div>
                 <div className="teamName">{m.homeName}</div>
                 <div className="teamSub">Local</div>
@@ -102,7 +145,11 @@ export default function ResultsPage() {
                 <div className="teamName">{m.awayName}</div>
                 <div className="teamSub">Visitante</div>
               </div>
-              <div className="badge">{m.awayCode}</div>
+              <TeamBadgeOrLogo
+                sport={m.sport || "soccer"}
+                logoKey={m.awayLogoKey}
+                fallback={m.awayCode}
+              />
             </div>
           </div>
         </Link>
