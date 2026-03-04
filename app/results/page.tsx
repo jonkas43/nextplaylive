@@ -8,7 +8,7 @@ type Match = {
   awayName: string;
   homeScore: number;
   awayScore: number;
-  status: string; // "Final", "EN VIVO 62'", etc.
+  status: string;
 };
 
 const matches: Match[] = [
@@ -37,7 +37,6 @@ const matches: Match[] = [
 export default function ResultsPage() {
   return (
     <div className="page resultsPage">
-      {/* Top bar */}
       <div className="resultsTop">
         <Link href="/" className="iconBtn" aria-label="Volver a Home">
           ←
@@ -45,12 +44,11 @@ export default function ResultsPage() {
 
         <h1 className="resultsTitle">RESULTADOS</h1>
 
-        <button className="iconBtn" aria-label="Calendario">
+        <button className="iconBtn" aria-label="Calendario" type="button">
           📅
         </button>
       </div>
 
-      {/* Chips */}
       <div className="sportsChips">
         <button className="chip chipActive" type="button">
           Fútbol
@@ -69,9 +67,8 @@ export default function ResultsPage() {
         </button>
       </div>
 
-      {/* Matches */}
       {matches.map((m) => (
-        <Link key={m.id} href={/match/${m.id}} className="card">
+        <Link key={m.id} href={"/match/" + m.id} className="card">
           <div
             style={{
               display: "flex",
