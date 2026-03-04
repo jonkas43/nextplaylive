@@ -13,6 +13,11 @@ const nextConfig: NextConfig = {
         hostname: "a.espncdn.com",
         pathname: "/i/teamlogos/**",
       },
+      {
+        protocol: "https",
+        hostname: "loodibee.com",
+        pathname: "/wp-content/uploads/**",
+      },
     ],
   },
 };

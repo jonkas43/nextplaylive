@@ -1,39 +1,32 @@
-export type Sport = "nba" | "nfl" | "mlb" | "soccer";
-
-const SOCCER_MAP: Record<string, string> = {
-  // claves normalizadas (sin acentos)
+[15:41, 4/3/2026] JK: export const TEAM_LOGOS: Record<string, string> = {
   america: "https://upload.wikimedia.org/wikipedia/en/1/1f/Club_Am%C3%A9rica_logo.svg",
-  "club-america": "https://upload.wikimedia.org/wikipedia/en/1/1f/Club_Am%C3%A9rica_logo.svg",
   monterrey: "https://upload.wikimedia.org/wikipedia/en/9/9a/C.F._Monterrey_logo.svg",
-  "cf-monterrey": "https://upload.wikimedia.org/wikipedia/en/9/9a/C.F._Monterrey_logo.svg",
+
+  lakers: "https://loodibee.com/wp-content/uploads/nba-los-angeles-lakers-logo.png",
+  warriors: "https://loodibee.com/wp-content/uploads/nba-golden-state-warriors-logo.png",
+  celtics: "https://loodibee.com/wp-content/uploads/nba-boston-celtics-logo.png",
+
+  chiefs: "https://loodibee.com/wp-content/uploads/nfl-kansas-city-chiefs-logo.png",
+  eagles: "https://loodibee.com/wp-content/uploads/nfl-philadelphia-eagles-logo.png",
+
+  yankees: "https://loodibee.com/wp-content/uploads/mlb-new-york-yankees-logo.png",
+  dodgers: "https://loodib…
+[15:42, 4/3/2026] JK: export const TEAM_LOGOS: Record<string, string> = {
+  america: "https://upload.wikimedia.org/wikipedia/en/1/1f/Club_Am%C3%A9rica_logo.svg",
+  monterrey: "https://upload.wikimedia.org/wikipedia/en/9/9a/C.F._Monterrey_logo.svg",
+
+  lakers: "https://loodibee.com/wp-content/uploads/nba-los-angeles-lakers-logo.png",
+  warriors: "https://loodibee.com/wp-content/uploads/nba-golden-state-warriors-logo.png",
+  celtics: "https://loodibee.com/wp-content/uploads/nba-boston-celtics-logo.png",
+
+  chiefs: "https://loodibee.com/wp-content/uploads/nfl-kansas-city-chiefs-logo.png",
+  eagles: "https://loodibee.com/wp-content/uploads/nfl-philadelphia-eagles-logo.png",
+
+  yankees: "https://loodibee.com/wp-content/uploads/mlb-new-york-yankees-logo.png",
+  dodgers: "https://loodibee.com/wp-content/uploads/mlb-los-angeles-dodgers-logo.png",
 };
 
-function normalize(input: string) {
-  return input
-    .toLowerCase()
-    .trim()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "") // quita acentos
-    .replace(/[^a-z0-9]+/g, "-") // espacios y símbolos a guiones
-    .replace(/^-+|-+$/g, ""); // recorta guiones
-}
-
-export function getTeamLogoUrl(sport: Sport, codeOrName: string): string | null {
-  const raw = normalize(codeOrName);
-
-  if (sport === "nba") {
-    return "https://a.espncdn.com/i/teamlogos/nba/500/" + raw + ".png";
-  }
-  if (sport === "nfl") {
-    return "https://a.espncdn.com/i/teamlogos/nfl/500/" + raw + ".png";
-  }
-  if (sport === "mlb") {
-    return "https://a.espncdn.com/i/teamlogos/mlb/500/" + raw + ".png";
-  }
-
-  if (sport === "soccer") {
-    return SOCCER_MAP[raw] || null;
-  }
-
-  return null;
+export function getTeamLogo(team: string) {
+  const key = team.toLowerCase().replace(/\s/g, "");
+  return TEAM_LOGOS[key] || "/team-placeholder.png";
 }
