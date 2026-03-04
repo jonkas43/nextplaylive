@@ -1,7 +1,9 @@
 export const TEAM_LOGOS: Record<string, string> = {
-  // Soccer
-  america: "https://upload.wikimedia.org/wikipedia/en/1/1f/Club_Am%C3%A9rica_logo.svg",
-  monterrey: "https://upload.wikimedia.org/wikipedia/en/9/9a/C.F._Monterrey_logo.svg",
+  // Soccer (usar PNG thumb, más estable que SVG)
+  america:
+    "https://upload.wikimedia.org/wikipedia/en/thumb/1/1f/Club_Am%C3%A9rica_logo.svg/512px-Club_Am%C3%A9rica_logo.svg.png",
+  monterrey:
+    "https://upload.wikimedia.org/wikipedia/en/thumb/9/9a/C.F._Monterrey_logo.svg/512px-C.F._Monterrey_logo.svg.png",
 
   // NBA
   lakers: "https://loodibee.com/wp-content/uploads/nba-los-angeles-lakers-logo.png",
