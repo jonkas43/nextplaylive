@@ -1,48 +1,4 @@
-[20:05, 3/3/2026] JK: import Link from "next/link";
-
-type Match = {
-  id: string;
-  homeCode: string;
-  homeName: string;
-  awayCode: string;
-  awayName: string;
-  homeScore: number;
-  awayScore: number;
-  status: string;
-};
-
-const matches: Match[] = [
-  {
-    id: "america-monterrey",
-    homeCode: "CA",
-    homeName: "América",
-    awayCode: "MTY",
-    awayName: "Monterrey",
-    homeScore: 2,
-    awayScore: 1,
-    status: "EN VIVO 62’",
-  },
-  {
-    id: "pumas-chivas",
-    homeCode: "PUM",
-    homeName: "Pumas",
-    awayCode: "CHI",
-    awayName: "Chivas",
-    homeScore: 0,
-    awayScore: 0,
-    status: "Final",
-  },
-];
-
-export default function ResultsPage() {
-  return (
-    <div className="page resultsPage">
-      <div className="resultsTop">
-        <Link href="/" className="i…
-[20:06, 3/3/2026] JK: git add .
-git commit -m "fix results page build"
-git push
-[20:18, 3/3/2026] JK: export default function MatchPage({ params }: { params: { id: string } }) {
+export default function MatchPage({ params }: { params: { id: string } }) {
   return (
     <div className="page">
       <div className="heroCard">
