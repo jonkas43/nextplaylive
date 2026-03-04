@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
+import { getTeamLogoUrl } from "@/app/lib/logos";
 
 function BasketballCourt() {
   return (
@@ -36,7 +38,11 @@ function BasketballCourt() {
 }
 
 const pbp = [
-  { t: "6:48", main: "Moussa Diabaté encesta 1/2 TL — 33 - 40", sub: "Falta de tiro sobre Khris Middleton." },
+  {
+    t: "6:48",
+    main: "Moussa Diabaté encesta 1/2 TL — 33 - 40",
+    sub: "Falta de tiro sobre Khris Middleton.",
+  },
   { t: "7:05", main: "Dallas pierde el balón", sub: "Robo de CHA en el perímetro." },
   { t: "7:22", main: "Triple de CHA — 33 - 39", sub: "Catch & shoot desde la esquina." },
 ];
@@ -62,25 +68,42 @@ export default function MatchPage({ params }: { params: { id: string } }) {
 
       <div className="card">
         <div className="matchScoreBar">
+          {/* HOME */}
           <div className="teamMini">
-            <div className="teamLogo">DAL</div>
+            <Image
+              src={getTeamLogoUrl("nba", "DAL")!}
+              alt="DAL"
+              width={46}
+              height={46}
+              className="teamLogoImg"
+              priority
+            />
             <div className="teamMetaWrap">
               <div className="teamAbbr">DAL</div>
               <div className="teamRec">21-39</div>
             </div>
           </div>
 
+          {/* SCORE */}
           <div>
             <div className="clockMid">2Q · 6:48</div>
             <div className="scoreBig">33 — 40</div>
           </div>
 
+          {/* AWAY */}
           <div className="teamMini teamMiniRight">
             <div className="teamMetaWrap">
               <div className="teamAbbr">CHA</div>
               <div className="teamRec">30-31</div>
             </div>
-            <div className="teamLogo">CHA</div>
+            <Image
+              src={getTeamLogoUrl("nba", "CHA")!}
+              alt="CHA"
+              width={46}
+              height={46}
+              className="teamLogoImg"
+              priority
+            />
           </div>
         </div>
 

@@ -800,3 +800,12 @@ body::after{
 }
 .pbpText{ opacity:.92; }
 .pbpSub{ margin-top:4px; font-size: 12px; opacity:.7; }
+
+.teamLogoImg{
+  width:46px;
+  height:46px;
+  border-radius:14px;
+  object-fit:contain;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.10);
+}
