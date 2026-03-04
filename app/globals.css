@@ -635,6 +635,3 @@ body::after{
   .heroCard{ padding: 48px 60px; }
   .score{ font-size: 76px; }
 }
-
-/* TEMP TEST — remove after 확인 */
-body{ outline: 6px solid red !important; }
