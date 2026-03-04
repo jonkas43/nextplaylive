@@ -14,6 +14,11 @@ function TeamLogo({
 }) {
   // 1) Intento principal (tu sistema actual)
   const primary = getTeamLogoUrl(sport, codeOrName);
+const mapped = getTeamLogo(codeOrName);
+
+const src = primary || mapped;
+
+if (!src) return <div className="badge">{fallback}</div>;
 
   // 2) Fallback (nuestro sistema definitivo por mapping)
   // OJO: getTeamLogo suele devolver "/team-placeholder.png" si no encuentra
