@@ -7,14 +7,12 @@ const teko = Teko({
   subsets: ["latin"],
   weight: ["500", "600", "700"],
   variable: "--font-teko",
-  display: "swap",
 });
 
 const rajdhani = Rajdhani({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-rajdhani",
-  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -47,8 +45,8 @@ const LINKS = [
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es">
-      <body className={${teko.variable} ${rajdhani.variable}}>
+    <html lang="es" className={${teko.variable} ${rajdhani.variable}}>
+      <body>
         <header className="topbar">
           <div className="topbarInner">
             <Image
@@ -60,4 +58,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               priority
             />
 
-            <input
+            <input id="menuToggle" className="menuToggle" type="checkbox" />
+            <label htmlFor="menuToggle" className="hamburger" aria-label="Abrir menú" />
+            <label htmlFor="menuToggle" className="menuOverlay" aria-hidden="true" />
+
+            <nav className="nav" aria-label="Navegación principal">
+              {LINKS.map((l) => (
+                <a key={l.href} href={l.href}>
+                  <label htmlFor="menuToggle" style={{ cursor: "pointer" }}>
+                    {l.label}
+                  </label>
+                </a>
+              ))}
+            </nav>
+          </div>
+        </header>
+
+        <main className="page">{children}</main>
+      </body>
+    </html>
+  );
+}
