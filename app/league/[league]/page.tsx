@@ -3,7 +3,6 @@ import Link from "next/link";
 
 export default function LeaguePage({ params }: { params: { league: string } }) {
   const leagueId = (params.league || "").toLowerCase();
-
   const league = LEAGUES.find((l) => l.id.toLowerCase() === leagueId);
 
   if (!league) {
@@ -23,9 +22,7 @@ export default function LeaguePage({ params }: { params: { league: string } }) {
         </ul>
 
         <p style={{ marginTop: 16 }}>
-          Prueba:
-          {" "}
-          <a href="/league/nba">/league/nba</a>,{" "}
+          Prueba: <a href="/league/nba">/league/nba</a>,{" "}
           <a href="/league/mlb">/league/mlb</a>,{" "}
           <a href="/league/nfl">/league/nfl</a>
         </p>
@@ -39,7 +36,8 @@ export default function LeaguePage({ params }: { params: { league: string } }) {
 
       <div style={{ display: "grid", gap: "10px" }}>
         {league.teams.map((team) => {
-          const slug = team.toLowerCase().replace(/ /g, "-");
+          const slug = team.toLowerCase().trim().replace(/\s+/g, "-");
+
           return (
             <Link
               key={team}
